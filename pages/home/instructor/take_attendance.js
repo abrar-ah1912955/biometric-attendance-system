@@ -1,4 +1,4 @@
-import { Button, Chip, Container, FormControl, FormControlLabel, Radio, RadioGroup, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Chip, Container, FormControl, FormControlLabel, Link, Radio, RadioGroup, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 
@@ -56,6 +56,13 @@ export default function TakeAttendance() {
                         </TableCell>
                         <TableCell>
                             Attendance
+                        </TableCell>
+                        <TableCell>
+                            <Link href="/home/instructor/FaceScan">
+                                <Button variant="contained">
+                                    Take Attendance by Face ID
+                                </Button>
+                            </Link>
                         </TableCell>
                     </TableRow>
                 </TableHead>
