@@ -38,11 +38,13 @@ export default function Home() {
         </Grid>
         <Grid item>
           <Card sx={{minWidth: '275px', m: 2, backgroundColor: 'limegreen'}}>
+          <Link href={'/home/admin'}>
             <CardActionArea>
               <CardContent>
                 Admin
               </CardContent>
             </CardActionArea>
+          </Link>
           </Card>
         </Grid>
       </Grid>
