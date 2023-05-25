@@ -84,31 +84,22 @@ export default function FaceScan() {
 
     
 
-    const getFaceMatcher = () => {
+    const getFaceMatcher = async () => {
         if (!quid) {
             alert('Please Enter QUID')
             return;
         }
-        fetch('/api/classes/112211')
-        .then(res => res.json())
-        .then(data => {
-            const dataArray = JSON.parse(data)
-            const chosen = dataArray.find(student => student.quid === quid)
-            if (chosen) {
-                if (chosen.faceData) {
-                    setQpicture(chosen.faceData)
-                } else {
-                    alert(`Student of QUID ${quid} does not have face ID registered. Please contact admin`)
-                    setMatching(false)
-                }
-            }
-            else {
-                alert(`Student of QUID ${quid} is not found`)
-                setMatching(false)
-            }
-        })
-        .then(() => setMatching(false))
-        .catch(e => console.log(e))
+
+        const stdRaw = await fetch('/api/student/students');
+        const studentsRes = await stdRaw.json();
+        const students = studentsRes.students.students
+        const cid = "3"
+        console.log(cid, students)
+
+        const currentClassList = students.filter(student => student.courses.some(course => "" + course.id === cid));
+        const std = currentClassList.find(stdn => stdn.QUID == quid);
+        console.log("this is the current class: ", currentClassList)
+        setQpicture(std.face)
     }
 
     useEffect(() => {
